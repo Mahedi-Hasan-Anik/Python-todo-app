@@ -1,0 +1,30 @@
+name: ci/cd writing
+
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: action/checkout@v3
+
+      - name: set up Python
+        uses: actions/setup-python@4
+        with:
+          python-version: '3.x'
+
+      - name: INstal dependencies
+        run: |
+          pip install -r requirements.txt 
+
+      - name: Run addition.py
+        run: python addition.py
+          
